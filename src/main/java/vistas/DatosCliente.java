@@ -4,19 +4,45 @@
  */
 package vistas;
 
+import com.mycompany.Entity.ClienteFrecuente;
+import com.mycompany.Entity.ClienteOcasional;
+import com.mycompany.Entity.ClienteVip;
+import com.mycompany.HikariMetods.Consultas;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
  */
 public class DatosCliente extends javax.swing.JFrame {
 
+    private int nivelClienteF;
+    private int membresia;
+    private double credito;
+    private String asesor;
+    private double descuento;
+    Consultas con = new Consultas();
+    
     /**
      * Creates new form DatosCliente
+     * @param nivelCliente
      */
-    public DatosCliente() {
+    public DatosCliente(int nivelCliente) {
         initComponents();
+        this.nivelClienteF = nivelCliente;
     }
 
+    public DatosCliente(int membresia, double credito, String asesor, double descuento) {
+        this.membresia = membresia;
+        this.credito = credito;
+        this.asesor = asesor;
+        this.descuento = descuento;
+        System.out.println(membresia+credito+asesor+descuento+"holapepe en datos constructor");
+    }
+
+   
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,7 +145,7 @@ public class DatosCliente extends javax.swing.JFrame {
         jLabel8.setText("4.");
 
         jLabel9.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        jLabel9.setText("Fecha de Nacimiento:");
+        jLabel9.setText("Nacimiento (yyyy-mm-dd):");
 
         text_fechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,7 +214,7 @@ public class DatosCliente extends javax.swing.JFrame {
 
         btn_guardarDatosCliente.setBackground(new java.awt.Color(176, 206, 255));
         btn_guardarDatosCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Save-as_37111.png"))); // NOI18N
-        btn_guardarDatosCliente.setText("GUARDAR");
+        btn_guardarDatosCliente.setText("guardar");
         btn_guardarDatosCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_guardarDatosClienteActionPerformed(evt);
@@ -251,7 +277,7 @@ public class DatosCliente extends javax.swing.JFrame {
         variable.setLayout(variableLayout);
         variableLayout.setHorizontalGroup(
             variableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
         variableLayout.setVerticalGroup(
             variableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +307,7 @@ public class DatosCliente extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,11 +374,11 @@ public class DatosCliente extends javax.swing.JFrame {
                                     .addComponent(text_numeroTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(variable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(219, 219, 219)
+                                .addGap(44, 44, 44)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btn_SalirDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btn_eliminarDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(104, 104, 104)
+                                .addGap(101, 101, 101)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btn_guardarDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -377,7 +403,7 @@ public class DatosCliente extends javax.swing.JFrame {
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
@@ -415,15 +441,11 @@ public class DatosCliente extends javax.swing.JFrame {
                     .addComponent(text_CorreoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(btn_SalirDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_SalirDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_eliminarDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_guardarDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -431,7 +453,7 @@ public class DatosCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(variable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(40, Short.MAX_VALUE))))
+                        .addContainerGap(82, Short.MAX_VALUE))))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -444,7 +466,51 @@ public class DatosCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirDatosClienteActionPerformed
 
     private void btn_guardarDatosClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarDatosClienteActionPerformed
-        // TODO add your handling code here:
+
+      String nombre =  text_nombreCliente.getText();
+      String genero = (String) combox_generoCliente.getSelectedItem();
+      String  cedula =  text_cedulaCliente.getText();
+      String nacimiento =  text_fechaNacimiento.getText();
+      String telefono =  text_numeroTelefono.getText();
+      String provincia =  text_ProvinciaCliente.getText();
+      String ciudad =  text_CiudadCliente.getText();
+      String corregimiento =  text_corregimientoCliente.getText();
+      String correo =  text_CorreoCliente.getText();
+
+    
+        switch(nivelClienteF){
+            case 1 -> {
+        con.Productosfrecuentes(cedula);
+        con.PromedioGastado(cedula);
+        ClienteVip vip = new ClienteVip(nombre, cedula, genero, nacimiento, telefono, provincia, ciudad, corregimiento, correo);
+        ClienteVipVista cv1 = new ClienteVipVista(cedula);
+        cv1.setVisible(true);
+        cv1.setLocationRelativeTo(null);
+         cv1.setSize(650,315);
+
+       // ClienteVip vip1 = new ClienteVip( asesor, credito, this.membresia, descuento, nombre, cedula, genero, nacimiento, telefono, provincia, ciudad, corregimiento, correo);
+       
+                break;
+            }
+            case 2 -> {
+        con.Productosfrecuentes(cedula);
+        con.PromedioGastado(cedula);
+       ClienteFrecuente cf = new ClienteFrecuente(nombre, cedula, genero, nacimiento, telefono, provincia, ciudad, corregimiento, correo);
+       ClienteFrecuenteVistas cf1 = new ClienteFrecuenteVistas(cedula);
+        cf1.setVisible(true);
+        cf1.setLocationRelativeTo(null);
+         cf1.setSize(580,350);
+                break;
+            }
+            case 3 -> {
+                
+       ClienteOcasional ocasional = new ClienteOcasional(nombre, cedula, genero,nacimiento,telefono,provincia,ciudad,corregimiento,correo);
+
+                break;
+            }
+        }
+            
+        
     }//GEN-LAST:event_btn_guardarDatosClienteActionPerformed
 
     private void text_corregimientoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_corregimientoClienteActionPerformed
@@ -484,7 +550,17 @@ public class DatosCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_text_nombreClienteActionPerformed
 
     private void btn_eliminarDatosClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarDatosClienteActionPerformed
-        // TODO add your handling code here:
+        text_nombreCliente.setText("");
+        text_cedulaCliente.setText("");
+        combox_generoCliente.setSelectedIndex(0);
+        text_fechaNacimiento.setText("");
+        text_numeroTelefono.setText("");
+        text_ProvinciaCliente.setText("");
+                        text_CiudadCliente.setText("");
+                        text_corregimientoCliente.setText("");
+                        text_CorreoCliente.setText("");
+        
+
     }//GEN-LAST:event_btn_eliminarDatosClienteActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -494,37 +570,6 @@ public class DatosCliente extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DatosCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DatosCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DatosCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DatosCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DatosCliente().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable TablaCliente;

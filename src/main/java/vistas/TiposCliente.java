@@ -11,7 +11,18 @@ import java.awt.BorderLayout;
  * @author User
  */
 public class TiposCliente extends javax.swing.JFrame {
+    private int nivelCliente;
 
+    public int getNivelCliente() {
+        return nivelCliente;
+    }
+
+    public void setNivelCliente(int nivelCliente) {
+        this.nivelCliente = nivelCliente;
+    }
+    
+    
+    
     /**
      * Creates new form TiposCliente
      */
@@ -145,16 +156,12 @@ public class TiposCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_ClienteVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClienteVIPActionPerformed
-        DatosCliente dc = new DatosCliente();
+        nivelCliente=1;
+        DatosCliente dc = new DatosCliente(nivelCliente);
         dc.setVisible(true);
         dc.setLocationRelativeTo(null);
-        ClienteVip cv = new ClienteVip();
-        cv.setSize(453,206);
-        cv.setLocation(0,0);
-        dc.variable.removeAll();
-        dc.variable.add(cv,BorderLayout.CENTER);
-        dc.variable.revalidate();
-        dc.variable.repaint();
+
+
         
         /*Añadir Columnas*/
         
@@ -197,7 +204,8 @@ public class TiposCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ClienteVIPActionPerformed
 
     private void btn_ClienteOcasionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClienteOcasionalActionPerformed
-        DatosCliente dc = new DatosCliente();
+        nivelCliente = 3;
+        DatosCliente dc = new DatosCliente(nivelCliente);
         dc.setVisible(true);
         dc.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_ClienteOcasionalActionPerformed
@@ -210,16 +218,11 @@ public class TiposCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirTipoClienteActionPerformed
 
     private void btn_ClienteFrecuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClienteFrecuenteActionPerformed
-        DatosCliente dc = new DatosCliente();
+        nivelCliente = 2;
+        DatosCliente dc = new DatosCliente(nivelCliente);
         dc.setVisible(true);
         dc.setLocationRelativeTo(null);
-        ClienteFrecuente cf = new ClienteFrecuente();
-        cf.setSize(453,206);
-        cf.setLocation(0,0);
-        dc.variable.removeAll();
-        dc.variable.add(cf,BorderLayout.CENTER);
-        dc.variable.revalidate();
-        dc.variable.repaint();
+ 
         
                 /*Añadir Columnas*/
         
