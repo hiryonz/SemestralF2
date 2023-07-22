@@ -24,7 +24,8 @@ import java.util.logging.Logger;
 public class Consultas {
     List<String> productosF = new ArrayList<>();
     ClienteVip vip = new ClienteVip();
-    
+    /*cree una lista para guardar todos los datos del cliente*/ 
+    ArrayList <String> datos;
     public String Productosfrecuentes(String cedula){
         try (Connection connect = ConexionHikari.getConnection();
     PreparedStatement statement = connect.prepareStatement("SELECT productos_comprados, COUNT(*) AS frecuencia FROM compras WHERE numero_cedula = ? GROUP BY productos_comprados ORDER BY frecuencia DESC");)
@@ -76,7 +77,33 @@ public class Consultas {
         }
         return null; 
     }
+        /*Metodo para mostrar todos los datos de los cientes mediante la cedula*/
+       public void ConsultaCedula(String cedula){
+           try(Connection connect = ConexionHikari.getConnection();
+               PreparedStatement statement = 
+                connect.prepareStatement("SELECT * FROM ClientesOcacional WHERE numero_cedula = ? "))
+     {
+         
+        statement.setString(1, cedula);
+ 
+        ResultSet resultSet = statement.executeQuery();
         
-       
+        while(resultSet.next()){
+          /*guardo la informacion en la lista que cree*/
+          datos.add(resultSet.getString("nombre"));
+          datos.add(resultSet.getString("fecha_nacimiento"));
+          datos.add(resultSet.getString("genero"));
+          datos.add(resultSet.getString("numero_telefono"));
+          datos.add(resultSet.getString("provincia"));
+          datos.add(resultSet.getString("ciudad"));
+          datos.add(resultSet.getString("corregimiento"));
+          
+          
+        }
         
+        
+           } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
 }
